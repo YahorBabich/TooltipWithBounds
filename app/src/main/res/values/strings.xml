@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TooltipWithBounds</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="message1">Tooltip using Tooltip using :)</string>
+    <string name="message2">Main2 Activity</string>
+    <string name="message3">Tooltip using Tooltip using Tooltip using :)</string>
 </resources>
