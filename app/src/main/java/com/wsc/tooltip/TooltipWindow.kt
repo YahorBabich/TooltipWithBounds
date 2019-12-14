@@ -1,6 +1,5 @@
 package com.wsc.tooltip
 
-import android.annotation.SuppressLint
 import android.app.ActionBar.LayoutParams
 import android.content.Context
 import android.graphics.Bitmap
@@ -16,16 +15,6 @@ import androidx.annotation.StringRes
 class TooltipWindow(val context: Context) {
     private var tipWindow: PopupWindow = PopupWindow(context)
     private val contentView: View
-
-    internal var handler: Handler = @SuppressLint("HandlerLeak")
-    object : Handler() {
-        override fun handleMessage(msg: android.os.Message) {
-            when (msg.what) {
-                MSG_DISMISS_TOOLTIP -> if (tipWindow.isShowing)
-                    tipWindow.dismiss()
-            }
-        }
-    }
 
     init {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -72,10 +61,13 @@ class TooltipWindow(val context: Context) {
         }
 
         tipWindow.showAtLocation(anchor, Gravity.NO_GRAVITY, x, y)
-        handler.sendEmptyMessageDelayed(MSG_DISMISS_TOOLTIP, 2000)
+
+        Handler().postDelayed({
+            tipWindow.dismiss()
+        }, DELAY_MILLIS)
     }
 
     companion object {
-        private val MSG_DISMISS_TOOLTIP = 100
+        private const val DELAY_MILLIS = 2000L
     }
 }
