@@ -55,7 +55,7 @@ class HomeAdapter(
             }
 
             imageView5.setOnClickListener { view ->
-                TooltipWindow(view.context).showToolTip(view, R.string.message2, root)
+                TooltipWindow(view.context).showToolTip(view, R.string.message3, root)
             }
 
             imageView6.setOnClickListener { view ->

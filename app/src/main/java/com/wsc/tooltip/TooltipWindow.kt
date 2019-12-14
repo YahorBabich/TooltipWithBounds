@@ -62,9 +62,8 @@ class TooltipWindow(context: Context) {
         }
 
         if (x + width > lRoot[0] + root.width) { // right
-            x = lRoot[0]
+            x = root.width - width + lRoot[0]
         }
-
 
         tipWindow.showAtLocation(anchor, Gravity.NO_GRAVITY, x, y)
         handler.sendEmptyMessageDelayed(MSG_DISMISS_TOOLTIP, 2000)
