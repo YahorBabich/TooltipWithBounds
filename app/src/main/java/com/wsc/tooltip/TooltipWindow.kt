@@ -3,6 +3,8 @@ package com.wsc.tooltip
 import android.annotation.SuppressLint
 import android.app.ActionBar.LayoutParams
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Handler
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -11,7 +13,7 @@ import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.annotation.StringRes
 
-class TooltipWindow(context: Context) {
+class TooltipWindow(val context: Context) {
     private var tipWindow: PopupWindow = PopupWindow(context)
     private val contentView: View
 
@@ -36,7 +38,11 @@ class TooltipWindow(context: Context) {
         tipWindow.isOutsideTouchable = true
         tipWindow.isTouchable = true
         tipWindow.isFocusable = true
-        //   tipWindow.setBackgroundDrawable(BitmapDrawable())
+        tipWindow.setBackgroundDrawable(
+            BitmapDrawable(
+                context.resources, Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888)
+            )
+        )
         tipWindow.contentView = contentView
 
         val text = contentView.findViewById<TextView>(R.id.tooltip_text)
